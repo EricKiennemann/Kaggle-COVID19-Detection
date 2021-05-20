@@ -20,7 +20,8 @@ def get_dicom_infos(filepaths):
     dict_dicom = defaultdict(list)
     for filepath in filepaths:
         ds = dicom.read_file(filepath, stop_before_pixels=True)
-
+        if 'WindowWidth' in ds:
+            print('Dataset has windowing')
         for values in ds:
             if values.VR != 'SQ' and values.name != 'Private Creator':
                 dict_dicom[values.name].append(values.value)
@@ -40,7 +41,7 @@ def extract_images(dataset,pd_samples):
     for index,row in pd_samples.iterrows():
         filepath = os.path.join(PATH_DATA,dataset,row['Study Instance UID'],row['Series Instance UID'],f"{row['SOP Instance UID']}.dcm")
         ds = dicom.read_file(filepath)
-        np_images.append([row['Study Instance UID'],row['Series Instance UID'],row['SOP Instance UID'],ds.pixel_array])
+        np_images.append([row['Study Instance UID'],row['Series Instance UID'],row['SOP Instance UID'],ds.pixel_array,row['Photometric Interpretation']])
     return np_images
 
 def generate_dicom_pickle(dataset):
