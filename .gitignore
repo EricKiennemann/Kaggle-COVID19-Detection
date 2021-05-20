@@ -1,0 +1,4 @@
+data/
+pickle/
+.vscode/*
+__pycache__/*
