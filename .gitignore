@@ -1,5 +1,4 @@
 data/
-pickle/
 .vscode/*
 __pycache__/*
 save/

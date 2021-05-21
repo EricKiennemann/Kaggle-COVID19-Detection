@@ -22,7 +22,7 @@ def check_opacity(x):
     return check
 
 def get_image_level():
-    filepath = os.path.join(PATH_DATA,"train_image_level.csv")
+    filepath = os.path.join(PATH_CONFIG,"train_image_level.csv")
     pd_image = pd.read_csv(filepath)
     pd_image['id'] = pd_image['id'].str.split('_',expand=True)[0]
     pd_image['boxes'] = pd_image['boxes'].str.replace("'",'"')

@@ -13,7 +13,7 @@ def update_label(x):
         return 'ATYPICAL'
 
 def get_study_level():
-    filepath = os.path.join(PATH_DATA,"train_study_level.csv")
+    filepath = os.path.join(PATH_CONFIG,"train_study_level.csv")
     pd_study = pd.read_csv(filepath)
     pd_study['id'] = pd_study['id'].str.split('_',expand=True)[0]
     pd_study['label']=pd_study.apply(update_label,axis=1)

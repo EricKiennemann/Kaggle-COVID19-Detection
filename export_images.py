@@ -30,8 +30,8 @@ def save_images(dataset,pd_image_level,pd_study_level,pd_dicom,resize):
         #data_resize_norm = (data_resize - data_resize.min()) / (data_resize.max() - data_resize.min())
         filepath_save = os.path.join(PATH_SAVE,dataset,f"{row['SOP Instance UID']}.png")
         cv2.imwrite(filepath_save,data_resize )
-        width = row['Rows']
-        height = row['Columns']
+        width = row['Columns']
+        height = row['Rows']
         boxes = pd_image_level.loc[row['SOP Instance UID']].boxes
         x_ratio = resize / width
         y_ratio = resize / height
@@ -53,4 +53,4 @@ if __name__ == "__main__":
     pd_image_level = get_image_level()
     pd_study_level = get_study_level()
 
-    save_images(TRAIN,pd_image_level,pd_study_level,pd_dicom,400)
+    save_images(TRAIN,pd_image_level,pd_study_level,pd_dicom,416)
